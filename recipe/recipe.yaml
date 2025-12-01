@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  version: 2.7.0
+
+package:
+  name: torch-geometric
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/t/torch-geometric/torch_geometric-${{ version }}.tar.gz
+  sha256: f9099e4aece1a9f618c84dbaac33a77f43139736698c7e8bddf3301ef1f2e8d4
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - flit-core >=3.12,<4
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - aiohttp
+    - fsspec
+    - jinja2
+    - numpy
+    - psutil >=5.8.0
+    - pyparsing
+    - requests
+    - tqdm
+    - python-xxhash
+
+tests:
+  - script:
+      - pip check
+      - python -c "import torch_geometric"
+      - python -c "import torch_geometric.nn"
+      - python -c "import torch_geometric.data"
+      - python -c "import torch_geometric.utils"
+      - python -c "import torch_geometric.datasets"
+      - python -c "import torch_geometric.transforms"
+    requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+        - pytorch-cpu >=2.5.1
+    
+
+about:
+  summary: Graph Neural Network Library for PyTorch
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/pyg-team/pytorch_geometric
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - synapticarbors
