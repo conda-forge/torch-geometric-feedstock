@@ -34,7 +34,8 @@ requirements:
     - python-xxhash
 
 tests:
-  - script
+  - script:
+      - pip check
       - python -c "import torch_geometric"
       - python -c "import torch_geometric.nn"
       - python -c "import torch_geometric.data"
