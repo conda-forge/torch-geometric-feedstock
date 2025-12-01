@@ -144,4 +144,5 @@ Feedstock Maintainers
 =====================
 
 * [@danielnachun](https://github.com/danielnachun/)
+* [@synapticarbors](https://github.com/synapticarbors/)
 
